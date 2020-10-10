@@ -19,15 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView textView = findViewById(R.id.textView);
 
-        NetworkService.getInstance().getJSONApi().getPostWithID(1).enqueue(new Callback<Post>() {
+        NetworkService.getInstance()
+                .getJSONApi()
+                .getPostWithID(1)
+                .enqueue(new Callback<Post>() {
                     @Override
                     public void onResponse(@NonNull Call<Post> call, @NonNull Response<Post> response) {
-//                        Post post = response.body();
-//
-//                        textView.append(post.getId() + "\n");
-//                        textView.append(post.getUserId() + "\n");
-//                        textView.append(post.getTitle() + "\n");
-//                        textView.append(post.getBody() + "\n");
+                        Post post = response.body();
+                        assert post!=null;
+                        textView.append("\n");
+                        textView.append(post.getId() + "\n");
+                        textView.append(post.getUserId() + "\n");
+                        textView.append(post.getTitle() + "\n");
+                        textView.append(post.getBody() + "\n");
                     }
 
                     @Override
